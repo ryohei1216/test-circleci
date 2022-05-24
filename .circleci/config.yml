@@ -6,4 +6,4 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run: yarn start
+      - run: yarn test
