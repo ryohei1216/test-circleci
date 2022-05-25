@@ -2,15 +2,13 @@ version: 2.1
 executors:
   my-executor:
     docker:
-      - image: cimg/ruby
-        auth:
-          username: ryohei1000000000@gmail.com
-          password: 38ryohei38
-
+      - image: cimg/ruby-2.7.1-node
+      - auth:
+        username: ryohei1216
+        password: 38ryohei38
 jobs:
   build:
     executor:
       name: my-executor
     steps:
-      - checkout
       - run: echo Hello World
