@@ -1,14 +1,40 @@
 version: 2.1
+commands:
+  say-subscription:
+    description: "echo subscription"
+    parameters:
+      to:
+        type: string
+        default: "TEST"
+    steps:
+      - run: echo <<parameters.to>>
+
 executors:
   my-executor:
     docker:
-      - image: cimg/ruby:3.0.4-node
-        auth:
-          username: ryohei1216
-          password: 38ryohei38
+      - image: busybox
 jobs:
   build:
     executor:
       name: my-executor
     steps:
-      - run: echo Hello World
+      - say-subscription:
+          to: "deploy job"
+  deploy:
+    docker:
+      - image: busybox
+    steps:
+      - run: echo "deploy job"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - hold:
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - hold
