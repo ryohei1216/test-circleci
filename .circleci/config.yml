@@ -3,6 +3,10 @@ executors:
   my-executor:
     docker:
       - image: cimg/ruby
+        auth:
+          username: ryohei1000000000@gmail.com
+          password: 38ryohei38
+
 jobs:
   build:
     executor:
