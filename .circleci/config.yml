@@ -12,4 +12,5 @@ jobs:
     executor:
       name: my-executor
     steps:
+      - checkout
       - run: echo Hello World
