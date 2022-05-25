@@ -1,6 +1,11 @@
 version: 2.1
 commands:
   sayhello:
+    description: "Say Hello"
+    parameters:
+      to:
+        type: string
+        default: "TEST"
     steps:
       - run: echo Hello World
 
@@ -13,4 +18,5 @@ jobs:
     executor:
       name: my-executor
     steps:
-      - sayhello
+      - sayhello:
+          to: "TTTTT"
