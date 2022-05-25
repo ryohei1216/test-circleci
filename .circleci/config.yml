@@ -1,14 +1,16 @@
 version: 2.1
+commands:
+  sayhello:
+    steps:
+      - run: echo Hello World
+
 executors:
   my-executor:
     docker:
       - image: cimg/ruby:3.0.4-node
-        auth:
-          username: ryohei1216
-          password: 38ryohei38
 jobs:
   build:
     executor:
       name: my-executor
     steps:
-      - run: echo Hello World
+      - sayhello
