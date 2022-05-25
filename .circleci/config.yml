@@ -2,7 +2,7 @@ version: 2.1
 executors:
   my-executor:
     docker:
-      - image: cimg/ruby-2.7.1-node
+      - image: cimg/ruby:3.0.4-node
         auth:
           username: ryohei1216
           password: 38ryohei38
