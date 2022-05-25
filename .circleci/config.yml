@@ -20,6 +20,11 @@ jobs:
     steps:
       - say-subscription:
           to: "deploy job"
+  deploy:
+    docker:
+      - image: busybox
+    steps:
+      - run: echo "deploy job"
 
 workflows:
   version: 2
