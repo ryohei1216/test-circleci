@@ -1,22 +1,35 @@
 version: 2.1
 commands:
-  sayhello:
-    description: "Say Hello"
+  say-subscription:
+    description: "echo subscription"
     parameters:
       to:
         type: string
         default: "TEST"
     steps:
-      - run: echo Hello <<parameters.to>>
+      - run: echo <<parameters.to>>
 
 executors:
   my-executor:
     docker:
-      - image: cimg/ruby:3.0.4-node
+      - image: busybox
 jobs:
   build:
     executor:
       name: my-executor
     steps:
-      - sayhello:
-          to: "TTTTT"
+      - say-subscription:
+          to: "deploy job"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - hold:
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - hold
