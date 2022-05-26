@@ -1,7 +1,7 @@
 executors:
   wih_db:
     docker:
-      - image: cimg/ruby
+      - image: cimg/ruby:3.0.4
         environment:
           DB_HOST: 127.0.0.1
           RAILS_ENV: test
