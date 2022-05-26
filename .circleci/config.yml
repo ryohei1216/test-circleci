@@ -1,40 +1,37 @@
 version: 2.1
-commands:
-  say-subscription:
-    description: "echo subscription"
-    parameters:
-      to:
-        type: string
-        default: "TEST"
-    steps:
-      - run: echo <<parameters.to>>
 
 executors:
-  my-executor:
+  default:
     docker:
       - image: busybox
+    working_directory: ~/repo
 jobs:
-  build:
-    executor:
-      name: my-executor
+  setup:
+    executor: default
     steps:
-      - say-subscription:
-          to: "deploy job"
-  deploy:
-    docker:
-      - image: busybox
+      - checkout
+      - run:
+          name: Nodeモジュールのインストール
+          command: yarn install
+      - persist_to_workspace:
+          root: ~/repo
+          path: -node_modules
+
+  test-jest:
+    executor: default
     steps:
-      - run: echo "deploy job"
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Jestを実行
+          command: npx jest --ci --maxWorker=2
 
 workflows:
   version: 2
-  build-and-deploy:
+  build-test:
     jobs:
-      - build
-      - hold:
-          type: approval
+      - setup
+      - test-jest:
           requires:
-            - build
-      - deploy:
-          requires:
-            - hold
+            - setup
