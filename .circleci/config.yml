@@ -15,7 +15,7 @@ jobs:
           command: yarn install
       - test:
           name: npm test を試す
-          command: yarn test
+          command: npx test
       - persist_to_workspace:
           root: ~/repo
           paths:
