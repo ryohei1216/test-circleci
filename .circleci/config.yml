@@ -13,6 +13,9 @@ jobs:
       - run:
           name: Nodeモジュールのインストール
           command: yarn install
+      - run:
+          name: テスト
+          command: yarn test
       - persist_to_workspace:
           root: ~/repo
           paths:
