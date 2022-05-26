@@ -13,6 +13,9 @@ jobs:
       - run:
           name: Nodeモジュールのインストール
           command: yarn install
+      - test:
+          name: npm test を試す
+          command: npm jest
       - persist_to_workspace:
           root: ~/repo
           paths:
@@ -26,7 +29,7 @@ jobs:
           at: .
       - run:
           name: Jestを実行
-          command: npm jest
+          command: npx jest --ci --maxWorker=2
 
 workflows:
   version: 2
