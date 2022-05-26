@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: busybox
+      - image: cimg/node:lts
     working_directory: ~/repo
 jobs:
   setup:
