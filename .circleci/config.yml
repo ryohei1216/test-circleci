@@ -26,7 +26,7 @@ jobs:
           at: .
       - run:
           name: Jestを実行
-          command: npx jest --ci --maxWorker=2
+          command: npm jest
 
 workflows:
   version: 2
