@@ -15,7 +15,7 @@ jobs:
           command: yarn install
       - persist_to_workspace:
           root: ~/repo
-          path: -node_modules
+          path: - node_modules
 
   test-jest:
     executor: default
