@@ -8,8 +8,8 @@ jobs:
       - run:
           name: テストファイル分割1
           command: |
-            circleci tests glob "__tests__/*.ts" | circlerci tests split --total=2 --index=0
+            circleci tests glob "__tests__/*.ts" | circleci tests split --total=2 --index=0
       - run:
           name: テストファイル分割2
           command: |
-            circleci tests glob "__tests__/*.ts" | circlerci tests split --total=2 --index=1
+            circleci tests glob "__tests__/*.ts" | circleci tests split --total=2 --index=1
