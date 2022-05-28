@@ -13,3 +13,4 @@ jobs:
           name: テストファイル分割2
           command: |
             circleci tests glob "__tests__/*.ts" | circleci tests split --total=2 --index=1
+    parallelism: 2
